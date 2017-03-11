@@ -2,3 +2,5 @@ foxycorpbankingdetails\bankingdetails\Controller\LoginController.class
 foxycorpbankingdetails\bankingdetails\POJO\UserInformation.class
 foxycorpbankingdetails\bankingdetails\Controller\WelcomeController.class
 foxycorpbankingdetails\bankingdetails\DatabaseConnection\DatabaseConnection.class
+foxycorpbankingdetails\bankingdetails\Controller\RegisterController.class
+foxycorpbankingdetails\bankingdetails\Controller\ForgotPasswordController.class

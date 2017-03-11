@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
     
     @RequestMapping(method = RequestMethod.GET)
-    public String LoginControllerPagePath(Model model)
+    public String LoginControlPagePath(Model model)
     {
         return "loginPage";
     }

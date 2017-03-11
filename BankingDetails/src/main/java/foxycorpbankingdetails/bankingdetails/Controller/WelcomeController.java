@@ -5,6 +5,7 @@
  */
 package foxycorpbankingdetails.bankingdetails.Controller;
 
+import foxycorpbankingdetails.bankingdetails.DatabaseConnection.DatabaseConnection;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,14 +28,20 @@ public class WelcomeController {
     
       @RequestMapping(method = RequestMethod.POST)
     public String WelcomeControlPagePathPost(HttpServletRequest request)
-    {
+    {   
+        DatabaseConnection databaseconnection = new DatabaseConnection();
         String Username = request.getParameter("username");
         String Password = request.getParameter("password");
-        
-        request.setAttribute("Username", Username);
-        request.setAttribute("Password", Password);
-        
-        return "WelcomePage";
+        boolean loginCheck = databaseconnection.LoginCheck(Username, Password);
+        System.out.println("Controller "+loginCheck);
+        if(loginCheck)
+        {
+            request.setAttribute("Username", Username);
+            request.setAttribute("Password", Password);
+            return "WelcomePage";    
+        }         
+        return "loginPage";
+               
     }
     
 }
