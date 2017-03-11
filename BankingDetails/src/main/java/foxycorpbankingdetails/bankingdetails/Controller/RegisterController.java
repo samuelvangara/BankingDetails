@@ -35,18 +35,18 @@ public class RegisterController {
         String Emailid = request.getParameter("emailid");
         String Username = request.getParameter("username");
         String Password = request.getParameter("password");
-        long Phonenumber = Integer.parseInt(request.getParameter("phonenumber"));
+        long Phonenumber = Long.parseLong(request.getParameter("phonenumber"));
         String Hint = request.getParameter("hint");
         System.out.println(Firstname+Lastname+Emailid+Username+Password+Phonenumber+Hint);
-        boolean loginCheck = databaseconnection.LoginCheck(Username, Password);
-        if(loginCheck)
-        {
-            request.setAttribute("Username", Username);
-            request.setAttribute("Password", Password);
-            return "WelcomePage";    
-        }         
-        return "loginPage";
-               
+      int RegistrationDetailsInsertionCheck = databaseconnection.RegisterationDetailsInsertion(Firstname, Lastname,Emailid,Username,Password,Phonenumber,Hint);
+       if(RegistrationDetailsInsertionCheck==1)
+       {     
+        
+             return "loginPage";
+             
+       }     
+           
+            return "RegisterPage";       
     }
     
 }

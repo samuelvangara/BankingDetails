@@ -14,7 +14,9 @@
     </head>
     <body style="background-color:darkseagreen" >
         <hr>
+        
          <form action="${pageContext.request.contextPath}/welcome" method="post">
+       
              <table align="center">
                  <tr>
                      <td  colspan="2" align="center">

@@ -14,8 +14,8 @@
     </head>
     <body style="background-color:darkgrey">
              <hr>
-         <form action="${pageContext.request.contextPath}/register" method="post">
-             <table align="center">
+          <form action="${pageContext.request.contextPath}/register" method="post">
+                    <table align="center">
                  <tr>
                      <td  colspan="2" align="center">
                          Enter your Details to Register
