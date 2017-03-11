@@ -18,11 +18,12 @@ import java.sql.SQLException;
 public class DatabaseConnection {
     
     static boolean LoginCheckBoolean = true;
+    static int RegistrationDetailsInsertionCheck;
     static Connection connection=null;
     static PreparedStatement preparedStatement =null;
     static ResultSet resultSet = null;
     public static final String LOGIN_CHECK = "select exists(select username,password from usercredentials where username=? and password=?)";
-    public static final String UPDATE_TABLE = "Insert into userinfo values(?,?,?,?,?)";
+    public static final String REGISTRATION_INSERTION = "insert into usercredentials (firstname,lastname,emailid,username,password,phonenumber,hint) values(?,?,?,?,?,?,?)";
 
     
     public void getConnection()
@@ -71,6 +72,28 @@ public class DatabaseConnection {
            
         }
           return LoginCheckBoolean;
+      }
+      
+      public int RegisterationDetailsInsertion(String Firstname,String Lastname,String Emailid,String Username,String Password,long Phonenumber,String Hint)
+      {
+           getConnection();
+        try {
+            preparedStatement = connection.prepareStatement(REGISTRATION_INSERTION);
+            preparedStatement.setString(1, Firstname);
+            preparedStatement.setString(2, Lastname);
+            preparedStatement.setString(3, Emailid);
+            preparedStatement.setString(4, Username);
+            preparedStatement.setString(5, Password);
+            preparedStatement.setLong(6, Phonenumber);
+            preparedStatement.setString(7, Hint);
+            RegistrationDetailsInsertionCheck=preparedStatement.executeUpdate();
+            preparedStatement.close();
+            closeConnection();
+        } catch (SQLException ex) {
+           System.out.println("SQL Exception in the RegisterationDetailsInsertion method"+ex);
+           
+        }
+          return RegistrationDetailsInsertionCheck;
       }
     
 }
