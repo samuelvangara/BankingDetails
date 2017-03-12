@@ -10,9 +10,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Welcome</title>
-    </head>
+         </head>
     <body>
-        <%
+  <%
             String UserName = request.getAttribute("Username").toString();
             String Password = request.getAttribute("Password").toString();       
         %>

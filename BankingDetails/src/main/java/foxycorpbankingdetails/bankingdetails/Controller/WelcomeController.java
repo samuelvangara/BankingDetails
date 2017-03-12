@@ -37,7 +37,7 @@ public class WelcomeController {
         System.out.println("Controller "+loginCheck);
         if(loginCheck)
         {
-            ModelAndView modelView = new ModelAndView("WelcomePage");
+            ModelAndView modelView = new ModelAndView("WelcomePageFrame");
             request.setAttribute("Username", Username);
             request.setAttribute("Password", Password);
             return modelView;
