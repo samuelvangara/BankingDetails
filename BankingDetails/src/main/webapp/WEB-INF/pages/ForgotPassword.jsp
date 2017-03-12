@@ -10,8 +10,37 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ForgotPassword</title>
+         <h1><center>Password Change!</center></h1>
     </head>
     <body style="background-color:darkgoldenrod" >
-        <h1>hi</h1>
+      <hr>
+             <h3><center> ${DetailsNotEnteredForgotPasswordMessage}</center></h3>
+             <form action="${pageContext.request.contextPath}/forgotpassword" method="post">
+                    <table align="center">
+                 <tr>
+                     <td  colspan="2" align="center"><b>
+                             Enter your Details to change password</b>
+                     </td>
+                 </tr>
+                  <tr>
+                     <td> User Name </td>
+                     <td><input type="text" title="Enter User name" name="username"/></td>
+                 </tr>
+                 <tr>
+                     <td> Mother's Maiden Name </td>
+                     <td><input type="text" title="Enter Mother's Maiden Name" name="hint"/></td>
+                 </tr>
+                 <tr>
+                     <td align="center" colspan="2">
+                         <button type="Submit">Change Password</button>
+                       </td>
+                 </tr>
+                 </form>
+            
+           </table>
+             <hr>
+  <footer align="center">
+      <p>Powered By <a href="https://www.google.com/">FOXYCORP!</a></p>
+</footer>
     </body>
 </html>

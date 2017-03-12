@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -27,7 +28,7 @@ public class WelcomeController {
     }
     
       @RequestMapping(method = RequestMethod.POST)
-    public String WelcomeControlPagePathPost(HttpServletRequest request)
+    public ModelAndView WelcomeControlPagePathPost(HttpServletRequest request)
     {   
         DatabaseConnection databaseconnection = new DatabaseConnection();
         String Username = request.getParameter("username");
@@ -36,12 +37,16 @@ public class WelcomeController {
         System.out.println("Controller "+loginCheck);
         if(loginCheck)
         {
+            ModelAndView modelView = new ModelAndView("WelcomePage");
             request.setAttribute("Username", Username);
             request.setAttribute("Password", Password);
-            return "WelcomePage";    
+            return modelView;
         }         
-        return "loginPage";
-               
+        
+           ModelAndView modelView = new ModelAndView("loginPage");
+           modelView.addObject("FailureLoginMessage","Please enter the correct username and password.");
+           return modelView;
+                       
     }
     
 }
