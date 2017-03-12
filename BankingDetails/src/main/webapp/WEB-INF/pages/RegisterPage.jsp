@@ -14,6 +14,8 @@
     </head>
     <body style="background-color:darkgrey">
              <hr>
+              <h3><center> ${DetailsNotEnteredRegistrationMessage}</center></h3>
+             <h3><center> ${FailureRegistrationMessage}</center></h3>
           <form action="${pageContext.request.contextPath}/register" method="post">
                     <table align="center">
                  <tr>
@@ -43,7 +45,7 @@
                  </tr>
                   <tr>
                      <td> Phone Number </td>
-                     <td><input type="number" minlength="10" maxlength="10" title="Enter Phone Number" name="phonenumber"/></td>
+                     <td><input type="number" minlength="10" maxlength="10" title="Enter Phone Number" value ="0" name="phonenumber"/></td>
                  </tr>
                   <tr>
                      <td> Mother's Maiden Name </td>

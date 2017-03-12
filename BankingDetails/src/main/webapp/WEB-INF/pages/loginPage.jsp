@@ -14,7 +14,8 @@
     </head>
     <body style="background-color:darkseagreen" >
         <hr>
-        
+        <h3> <center>${FailureLoginMessage}</center></h3>
+        <h3> <center>${SuccessRegistrationMessage}</center></h3>
          <form action="${pageContext.request.contextPath}/welcome" method="post">
        
              <table align="center">
