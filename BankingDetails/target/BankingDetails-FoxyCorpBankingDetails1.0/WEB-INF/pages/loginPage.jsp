@@ -3,18 +3,21 @@
     Created on : Mar 8, 2017, 5:41:43 PM
     Author     : Foxy
 --%>
-<META Http-Equiv="Cache-Control" Content="no-cache">
-<META Http-Equiv="Pragma" Content="no-cache">
-<META Http-Equiv="Expires" Content="0"> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
+     <head>
+         <style>
+body {
+    background-image: url(login.png);
+    background-repeat: no-repeat;
+}
+</style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
-        <h1><center>Welcome to Foxy Corp</center></h1>
+        <h1><center>Foxy Corp</center></h1>
     </head>
-    <body style="background-color:darkseagreen">
+    <body style="background-color:silver ">
         <hr>
         <h3> <center>${FailureLoginMessage}</center></h3>
         <h3> <center>${SuccessRegistrationMessage}</center></h3>
@@ -58,7 +61,7 @@
          
              <hr>
   <footer align="center">
-      <p><center>Powered By <a href="https://www.google.com/">FOXYCORP!</a></center></p>
+      <p><center>Powered By &copy;FoxyCorp</center></p>
 </footer>
     </body>
-</html>
+   </html>

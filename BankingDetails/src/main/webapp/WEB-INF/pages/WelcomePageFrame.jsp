@@ -15,7 +15,7 @@
         %>
         <h3 align="left">Hello!<%out.print(UserName);%></h3>
     <hr>
-    <style>
+     <style>
 body {margin:0;}
 
 .topnav {
@@ -56,14 +56,16 @@ body {margin:0;}
    <form name="rewardsPage" action="${pageContext.request.contextPath}/rewards" method="post"> 
   <a href="javascript:document.rewardsPage.submit()">Rewards</a>
   </form>
+   <form name="profilePage" action="${pageContext.request.contextPath}/profile" method="post"> 
+  <a href="javascript:document.profilePage.submit()">Profile</a>
+  </form>
   <form name="logoutPage" action="${pageContext.request.contextPath}/logout" method="post"> 
   <a href="javascript:document.logoutPage.submit()">Logout</a>
   </form>
 </div>
 <hr>
 <div style="padding-left:16px">
-  <h2>Top Navigation Example</h2>
-  <p>Some content..</p>
+    <iframe scrolling="no" style="bottom: 160px; right: 50px;" width="40%" src="http://localhost:8080/BankingDetails/balance"> Data can be entered here!</iframe>
 </div>
     </body>
 </html>

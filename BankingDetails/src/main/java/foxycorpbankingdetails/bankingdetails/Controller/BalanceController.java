@@ -23,15 +23,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class BalanceController {
     
     @RequestMapping(method = RequestMethod.GET)
-    public String BalanceControlPagePathGet(Model model)
+    public String BalanceControlPagePathGet(HttpServletRequest request)
     {
+         request.setAttribute("Username", Username);
+         request.setAttribute("Password", Password);
        return "BalancePage";
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView HomeTabControlPagePathPost(HttpServletRequest request)
+    public ModelAndView BalanceControlPagePathPost(HttpServletRequest request)
     {  
-        System.out.println("dfgdgdfgsdfgsdfgsd"+Username+Password);
         if(Username!=null && Password!=null)
         {
             ModelAndView modelView = new ModelAndView("BalancePage");

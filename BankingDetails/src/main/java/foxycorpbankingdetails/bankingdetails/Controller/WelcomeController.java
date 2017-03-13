@@ -57,9 +57,8 @@ public class WelcomeController {
     }
     
      @RequestMapping(value="/WelcomePageFrame" ,method = RequestMethod.POST)
-    public ModelAndView HomeTabControlPagePathPost(HttpServletRequest request)
+    public ModelAndView WelcomeFrameControlPagePathPost(HttpServletRequest request)
     {  
-        System.out.println("dfgdgdfgsdfgsdfgsd"+Username+Password);
         if(Username!=null && Password!=null)
         {
             ModelAndView modelView = new ModelAndView("WelcomePageFrame");
