@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>ForgotPassword</title>
+        <title>Forgot Password</title>
         <h1><center>Password Change!</center></h1>
     </head>
            <%

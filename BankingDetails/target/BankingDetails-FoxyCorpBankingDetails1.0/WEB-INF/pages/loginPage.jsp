@@ -3,7 +3,9 @@
     Created on : Mar 8, 2017, 5:41:43 PM
     Author     : Foxy
 --%>
-
+<META Http-Equiv="Cache-Control" Content="no-cache">
+<META Http-Equiv="Pragma" Content="no-cache">
+<META Http-Equiv="Expires" Content="0"> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,7 +14,7 @@
         <title>Login</title>
         <h1><center>Welcome to Foxy Corp</center></h1>
     </head>
-    <body style="background-color:darkseagreen" >
+    <body style="background-color:darkseagreen">
         <hr>
         <h3> <center>${FailureLoginMessage}</center></h3>
         <h3> <center>${SuccessRegistrationMessage}</center></h3>
