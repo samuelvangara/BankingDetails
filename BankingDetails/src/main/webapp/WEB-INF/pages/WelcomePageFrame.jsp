@@ -15,7 +15,7 @@
         %>
         <h3 align="left">Hello!<%out.print(UserName);%></h3>
     <hr>
-    <style>
+     <style>
 body {margin:0;}
 
 .topnav {
@@ -65,8 +65,7 @@ body {margin:0;}
 </div>
 <hr>
 <div style="padding-left:16px">
-  <h2>Top Navigation Example</h2>
-  <p>Some content..</p>
+    <iframe scrolling="no" style="bottom: 160px; right: 50px;" width="40%" src="http://localhost:8080/BankingDetails/balance"> Data can be entered here!</iframe>
 </div>
     </body>
 </html>

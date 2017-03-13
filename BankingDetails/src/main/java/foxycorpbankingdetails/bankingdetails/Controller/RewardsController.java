@@ -23,8 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class RewardsController {
     
     @RequestMapping(method = RequestMethod.GET)
-    public String RewardsControlPagePathGet(Model model)
+    public String RewardsControlPagePathGet(HttpServletRequest request)
     {
+       request.setAttribute("Username", Username);
+       request.setAttribute("Password", Password); 
        return "RewardsPage";
     }
     

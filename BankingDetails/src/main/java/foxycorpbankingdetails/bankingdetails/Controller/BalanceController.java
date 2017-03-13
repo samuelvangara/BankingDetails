@@ -23,8 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class BalanceController {
     
     @RequestMapping(method = RequestMethod.GET)
-    public String BalanceControlPagePathGet(Model model)
+    public String BalanceControlPagePathGet(HttpServletRequest request)
     {
+         request.setAttribute("Username", Username);
+         request.setAttribute("Password", Password);
        return "BalancePage";
     }
     

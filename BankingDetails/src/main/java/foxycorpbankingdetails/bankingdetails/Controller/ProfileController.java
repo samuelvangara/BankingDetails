@@ -23,8 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class ProfileController {
     
      @RequestMapping(method = RequestMethod.GET)
-    public String ProfileControlPagePathGet(Model model)
+    public String ProfileControlPagePathGet(HttpServletRequest request)
     {
+        request.setAttribute("Username", Username);
+         request.setAttribute("Password", Password); 
        return "ProfilePage";
     }
     
