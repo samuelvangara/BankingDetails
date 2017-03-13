@@ -21,18 +21,21 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value="/welcome")
 public class WelcomeController {
     
-      @RequestMapping(method = RequestMethod.GET)
+    public static String Username="";
+    public static String Password=""; 
+    
+    @RequestMapping(method = RequestMethod.GET)
     public String WelcomeControlPagePathGet(Model model)
     {
-        return "WelcomePage";
+       return "loginPage";
     }
     
       @RequestMapping(method = RequestMethod.POST)
     public ModelAndView WelcomeControlPagePathPost(HttpServletRequest request)
     {   
         DatabaseConnection databaseconnection = new DatabaseConnection();
-        String Username = request.getParameter("username");
-        String Password = request.getParameter("password");
+        Username = request.getParameter("username");
+        Password = request.getParameter("password");
         boolean loginCheck = databaseconnection.LoginCheck(Username, Password);
         if(loginCheck)
         {
@@ -47,11 +50,27 @@ public class WelcomeController {
            modelView.addObject("FailureLoginMessage","Please enter your credentials to login.");
            return modelView; 
         }
-        
            ModelAndView modelView = new ModelAndView("loginPage");
            modelView.addObject("FailureLoginMessage","Please enter the correct username and password.If you are not a registered user, please register!");
            return modelView;
-                       
+   
     }
+    
+     @RequestMapping(value="/WelcomePageFrame" ,method = RequestMethod.POST)
+    public ModelAndView HomeTabControlPagePathPost(HttpServletRequest request)
+    {  
+        System.out.println("dfgdgdfgsdfgsdfgsd"+Username+Password);
+        if(Username!=null && Password!=null)
+        {
+            ModelAndView modelView = new ModelAndView("WelcomePageFrame");
+            request.setAttribute("Username", Username);
+            request.setAttribute("Password", Password);
+            return modelView;
+        
+        }
+       ModelAndView modelView = new ModelAndView("loginPage");
+       modelView.addObject("FailureLoginMessage","Your session has expired please login again!");
+       return modelView;
+}
     
 }
