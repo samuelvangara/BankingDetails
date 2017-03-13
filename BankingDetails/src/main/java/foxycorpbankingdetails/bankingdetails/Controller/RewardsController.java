@@ -29,9 +29,8 @@ public class RewardsController {
     }
     
       @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView HomeTabControlPagePathPost(HttpServletRequest request)
+    public ModelAndView RewardsControlPagePathPost(HttpServletRequest request)
     {  
-        System.out.println("dfgdgdfgsdfgsdfgsd"+Username+Password);
         if(Username!=null && Password!=null)
         {
             ModelAndView modelView = new ModelAndView("RewardsPage");

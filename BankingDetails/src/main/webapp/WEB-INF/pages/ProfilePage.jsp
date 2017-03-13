@@ -1,6 +1,6 @@
 <%-- 
-    Document   : RewardsPage
-    Created on : Mar 13, 2017, 4:07:51 AM
+    Document   : ProfilePage
+    Created on : Mar 13, 2017, 4:33:03 AM
     Author     : Foxy
 --%>
 
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Rewards</title>
+        <title>Profile</title>
         <%
             String UserName = request.getAttribute("Username").toString();
             String Password = request.getAttribute("Password").toString();       
@@ -51,14 +51,14 @@ body {margin:0;}
     <form name="WelcomePage" action="${pageContext.request.contextPath}/welcome/WelcomePageFrame" method="post"> 
   <a href="javascript:document.WelcomePage.submit()">Home</a>
   </form>
-  <form name="balancePage" action="${pageContext.request.contextPath}/balance"  method="post"> 
+  <form name="balancePage" action="${pageContext.request.contextPath}/balance" method="post"> 
   <a href="javascript:document.balancePage.submit()">Balance</a>
   </form>
-   <form name="rewardsPage" action="${pageContext.request.contextPath}/rewards"  method="post"> 
-  <a class="active" href="javascript:document.rewardsPage.submit()">Rewards</a>
+   <form name="rewardsPage" action="${pageContext.request.contextPath}/rewards" method="post"> 
+  <a href="javascript:document.rewardsPage.submit()">Rewards</a>
   </form>
-  <form name="profilePage" action="${pageContext.request.contextPath}/profile" method="post"> 
-  <a href="javascript:document.profilePage.submit()">Profile</a>
+   <form name="profilePage" action="${pageContext.request.contextPath}/profile" method="post"> 
+  <a class="active" href="javascript:document.profilePage.submit()">Profile</a>
   </form>
   <form name="logoutPage" action="${pageContext.request.contextPath}/logout" method="post"> 
   <a href="javascript:document.logoutPage.submit()">Logout</a>

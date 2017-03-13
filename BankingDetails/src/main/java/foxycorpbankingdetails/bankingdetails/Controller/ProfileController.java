@@ -19,28 +19,29 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Foxy
  */
 @Controller
-@RequestMapping(value="/balance")
-public class BalanceController {
+@RequestMapping(value="/profile")
+public class ProfileController {
     
-    @RequestMapping(method = RequestMethod.GET)
-    public String BalanceControlPagePathGet(Model model)
+     @RequestMapping(method = RequestMethod.GET)
+    public String ProfileControlPagePathGet(Model model)
     {
-       return "BalancePage";
+       return "ProfilePage";
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView BalanceControlPagePathPost(HttpServletRequest request)
+    public ModelAndView ProfileControlPagePathPost(HttpServletRequest request)
     {  
         if(Username!=null && Password!=null)
         {
-            ModelAndView modelView = new ModelAndView("BalancePage");
+            ModelAndView modelView = new ModelAndView("ProfilePage");
             request.setAttribute("Username", Username);
             request.setAttribute("Password", Password);
             return modelView;
         
         }
-       ModelAndView modelView = new ModelAndView("BalancePage");
+       ModelAndView modelView = new ModelAndView("ProfilePage");
        modelView.addObject("FailureLoginMessage","Your session has expired please login again!");
        return modelView;
 }
+    
 }

@@ -56,6 +56,9 @@ body {margin:0;}
    <form name="rewardsPage" action="${pageContext.request.contextPath}/rewards" method="post"> 
   <a href="javascript:document.rewardsPage.submit()">Rewards</a>
   </form>
+   <form name="profilePage" action="${pageContext.request.contextPath}/profile" method="post"> 
+  <a href="javascript:document.profilePage.submit()">Profile</a>
+  </form>
   <form name="logoutPage" action="${pageContext.request.contextPath}/logout" method="post"> 
   <a href="javascript:document.logoutPage.submit()">Logout</a>
   </form>
