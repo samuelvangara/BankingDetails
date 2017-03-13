@@ -62,7 +62,7 @@
          
              <hr>
   <footer align="center">
-      <p>Powered By <a href="https://www.google.com/">FOXYCORP!</a></p>
+      <p><center>Powered By <a href="https://www.google.com/">FOXYCORP!</a></center></p>
 </footer>
     </body>
 </html>
