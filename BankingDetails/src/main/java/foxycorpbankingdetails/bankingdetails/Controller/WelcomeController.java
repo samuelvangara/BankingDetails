@@ -34,17 +34,22 @@ public class WelcomeController {
         String Username = request.getParameter("username");
         String Password = request.getParameter("password");
         boolean loginCheck = databaseconnection.LoginCheck(Username, Password);
-        System.out.println("Controller "+loginCheck);
         if(loginCheck)
         {
             ModelAndView modelView = new ModelAndView("WelcomePageFrame");
             request.setAttribute("Username", Username);
             request.setAttribute("Password", Password);
             return modelView;
-        }         
+        }
+        if(Username.length()==0 || Password.length()==0)
+        {
+           ModelAndView modelView = new ModelAndView("loginPage");
+           modelView.addObject("FailureLoginMessage","Please enter your credentials to login.");
+           return modelView; 
+        }
         
            ModelAndView modelView = new ModelAndView("loginPage");
-           modelView.addObject("FailureLoginMessage","Please enter the correct username and password.");
+           modelView.addObject("FailureLoginMessage","Please enter the correct username and password.If you are not a registered user, please register!");
            return modelView;
                        
     }
