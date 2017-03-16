@@ -128,7 +128,6 @@
   background: #ff6600;
   color: white;
 }
-
 </style>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
@@ -177,7 +176,6 @@
                  </tr>
             </form>
            </table>
-
  </div>  
      </body> 
      <div>

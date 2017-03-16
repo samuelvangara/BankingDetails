@@ -70,4 +70,10 @@ body {margin:0;}
   <p>Some content..</p>
 </div>
     </body>
+    <div>
+             <footer>
+                 <hr>
+ <center>Powered By &copy;FoxyCorp</center>
+  </footer>        
+     </div>
 </html>
