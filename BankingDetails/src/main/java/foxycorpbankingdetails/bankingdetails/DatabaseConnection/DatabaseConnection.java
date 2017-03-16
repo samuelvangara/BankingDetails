@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Foxy
@@ -17,19 +19,24 @@ import java.sql.SQLException;
 public class DatabaseConnection {
     
     static boolean LoginCheckBoolean = true, PasswordCheckBoolean= true, databaseCheck=true;
-    static int RegistrationDetailsInsertionCheck,PasswordChangeUpdateCheck;
+    static int RegistrationDetailsInsertionCheck,PasswordChangeUpdateCheck,BalanceDetailsInsertionCheck;
+    static String RetrievedBalance=null;
     static Connection connection=null;
     static Connection connectionDBCreate=null;
     static PreparedStatement preparedStatement =null;
     static ResultSet resultSet = null;
-    public static final String CHECK_DATABASE = "select exists(SELECT * from pg_database WHERE datname='bankingdetials')"; 
-    public static final String CREATE_DATABASE = "create database bankingdetials"; 
+    public static final String CHECK_DATABASE = "select exists(SELECT * from pg_database WHERE datname='bankingdetails')"; 
+    public static final String CREATE_DATABASE = "create database bankingdetails"; 
     public static final String CREATE_SEQUENCE="CREATE SEQUENCE IF NOT EXISTS UserCredSequence CYCLE INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 20";
     public static final String CREATE_TABLE="CREATE TABLE IF NOT EXISTS usercredentials (id integer NOT NULL DEFAULT nextval('UserCredSequence'),firstname name NOT NULL,lastname name NOT NULL,emailid character varying(20) NOT NULL,username name NOT NULL,password character varying(15) NOT NULL,phonenumber numeric(10) NOT NULL,hint character varying(30) NOT NULL)";
+    public static final String CREATE_SEQUENCE_BALANCE="CREATE SEQUENCE IF NOT EXISTS UserCredBalance CYCLE INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 20";
+    public static final String CREATE_TABLE_BALANCE="CREATE TABLE IF NOT EXISTS userbalance (id integer NOT NULL DEFAULT nextval('UserCredBalance'),username name NOT NULL,balance numeric(10) NOT NULL,rewards numeric(10) NOT NULL)";
     public static final String LOGIN_CHECK = "select exists(select username,password from usercredentials where username=? and password=?)";
     public static final String REGISTRATION_INSERTION = "insert into usercredentials (firstname,lastname,emailid,username,password,phonenumber,hint) values(?,?,?,?,?,?,?)";
+    public static final String BALANCE_AND_REWARDS_INSERTION = "insert into userbalance (username,balance,rewards) values(?,5000,30)";         
     public static final String PASSWORD_CHANGE_CHECK="select exists(select username,hint from usercredentials where username=? and hint=?)";
     public static final String PASSWORD_CHANGE_UPDATE="UPDATE usercredentials SET password = ? WHERE username = ? and hint = ?";
+    public static final String RETRIEVE_BALANCE="select balance from userbalance where username=?";
     
     public void getConnectionBeforeDBCreation()
     {
@@ -53,7 +60,7 @@ public class DatabaseConnection {
         try {
             Class.forName("org.postgresql.Driver");
             try {
-                connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/bankingdetials", "postgres","Nitinz!424");
+                connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/bankingdetails", "postgres","Nitinz!424");
             } catch (SQLException ex) {
                System.out.println("SQL Exception in the getConnectionAfterDBCreation method"+ex);
             }
@@ -118,6 +125,19 @@ public class DatabaseConnection {
           
           closeConnection();
       }
+        
+      public void createBalanceSequence()
+      {
+          getConnectionAfterDBCreation();
+        try {
+            preparedStatement = connection.prepareStatement(CREATE_SEQUENCE_BALANCE);
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception in the createBalanceSequence method"+ex);
+        }
+          closeConnection();
+      }
       
       public void createTable()
       {
@@ -131,6 +151,20 @@ public class DatabaseConnection {
         }
           
           closeConnection();
+      }
+      
+      public void createBalanceTable()
+      {
+          getConnectionAfterDBCreation();
+   
+        try {
+            preparedStatement = connection.prepareStatement(CREATE_TABLE_BALANCE);
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException ex) {
+             System.out.println("SQL Exception in the createBalanceTable method"+ex);
+            }      
+             closeConnection();
       }
       
       
@@ -154,6 +188,23 @@ public class DatabaseConnection {
            
         }
           return LoginCheckBoolean;
+      }
+      
+      
+      public int BalanceRewardsDetails(String Username)
+      {
+         getConnectionAfterDBCreation();
+        try {
+            preparedStatement = connection.prepareStatement(BALANCE_AND_REWARDS_INSERTION);
+            preparedStatement.setString(1, Username);
+            BalanceDetailsInsertionCheck=preparedStatement.executeUpdate();
+            preparedStatement.close();
+            closeConnection();
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception in the BalanceRewardsDetails method"+ex);
+        }
+         
+         return BalanceDetailsInsertionCheck;
       }
       
       public int RegisterationDetailsInsertion(String Firstname,String Lastname,String Emailid,String Username,String Password,long Phonenumber,String Hint)
@@ -217,5 +268,25 @@ public class DatabaseConnection {
         }
           return PasswordChangeUpdateCheck;
       }
+       
+       public String RetrieveBalance(String Username)
+       {
+           getConnectionAfterDBCreation();
+        try {        
+            preparedStatement = connection.prepareStatement(RETRIEVE_BALANCE);
+            preparedStatement.setString(1, Username);
+           resultSet=preparedStatement.executeQuery();
+           while(resultSet.next())
+           {
+           RetrievedBalance = resultSet.getString(1);
+           }
+            resultSet.close();
+            preparedStatement.close();
+            closeConnection();
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception in the RetrieveBalance method"+ex);
+        }
+           return RetrievedBalance;
+       }
     
 }
