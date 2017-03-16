@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class WelcomeController {
     
     public static String Username="";
-    public static String Password=""; 
+    public transient static String Password=""; 
     
     @RequestMapping(method = RequestMethod.GET)
     public String WelcomeControlPagePathGet(Model model)
@@ -33,9 +33,12 @@ public class WelcomeController {
       @RequestMapping(method = RequestMethod.POST)
     public ModelAndView WelcomeControlPagePathPost(HttpServletRequest request)
     {   
+        String RetrievedBalance=null;
         DatabaseConnection databaseconnection = new DatabaseConnection();
         Username = request.getParameter("username");
         Password = request.getParameter("password");
+        RetrievedBalance=databaseconnection.RetrieveBalance(Username);
+        request.setAttribute("Balance",RetrievedBalance);
         boolean loginCheck = databaseconnection.LoginCheck(Username, Password);
         if(loginCheck)
         {

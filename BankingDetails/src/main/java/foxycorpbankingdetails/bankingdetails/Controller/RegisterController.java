@@ -46,9 +46,12 @@ public class RegisterController {
            model.addObject("DetailsNotEnteredRegistrationMessage","Please fill in the details to proceed with registration.");
             return model;    
         }
-        System.out.println(Firstname+Lastname+Emailid+Username+Password+Phonenumber+Hint);
+      System.out.println(Firstname+Lastname+Emailid+Username+Password+Phonenumber+Hint);
+      databaseconnection.createBalanceSequence();
+      databaseconnection.createBalanceTable();
       int RegistrationDetailsInsertionCheck = databaseconnection.RegisterationDetailsInsertion(Firstname, Lastname,Emailid,Username,Password,Phonenumber,Hint);
-       if(RegistrationDetailsInsertionCheck==1)
+      int BalanceDetailsInsertionCheck = databaseconnection.BalanceRewardsDetails(Username);
+      if(RegistrationDetailsInsertionCheck==1 && BalanceDetailsInsertionCheck==1)
        {     
         
            ModelAndView model = new ModelAndView("loginPage");

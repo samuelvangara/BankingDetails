@@ -64,8 +64,22 @@ body {margin:0;}
   </form>
 </div>
 <hr>
-<div style="padding-left:16px">
-    <iframe scrolling="no" style="bottom: 160px; right: 50px;" width="40%" src="http://localhost:8080/BankingDetails/balance"> Data can be entered here!</iframe>
+<div style="padding-left:25px">
+   <br>
+<br>
+<br>
+ <iframe scrolling="no" width="45%" src="http://localhost:8080/BankingDetails/balanceSnipnet"></iframe>
+<iframe scrolling="no" width="45%" src="http://localhost:8080/BankingDetails/balance"></iframe>
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<iframe scrolling="no" width="45%" src="http://localhost:8080/BankingDetails/balanceSnipnet"></iframe>
+<iframe scrolling="no" width="45%" src="http://localhost:8080/BankingDetails/balance"></iframe>  
+<br>
+<br>
 </div>
     </body>
 </html>
