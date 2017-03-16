@@ -42,10 +42,32 @@ body {margin:0;}
     background-color: #4CAF50;
     color: white;
 }
+
 </style>
-         </head>
+<script type="text/javascript">
+    window.onload=function(){
+      var auto = setTimeout(function(){ autoRefresh(); }, 0.1);
+
+        function submitform(){
+           document.forms["balanceSnipnetForm"].submit();
+           document.forms["rewardsSnippetForm"].submit();
+           document.forms["profileSnippetForm"].submit();
+        }
+
+        function autoRefresh(){
+           clearTimeout(auto);
+           auto = setTimeout(function(){ submitform();});
+        }
+    };
+</script>
+     </head>
     <body style="background-color:whitesmoke">
- 
+ <form name="balanceSnipnetForm" id="balanceSnipnetForm" target="balanceSnipnetFrame" action="${pageContext.request.contextPath}/balanceSnipnet" method="post"> 
+</form>
+ <form name="rewardsSnippetForm" id="rewardsSnippetForm" target="rewardsSnippetFrame" action="${pageContext.request.contextPath}/rewardsSnippet" method="post"> 
+</form>
+<form name="profileSnippetForm" id="profileSnippetForm" target="profileSnippetFrame" action="${pageContext.request.contextPath}/profileSnippet" method="post"> 
+</form>
 <div class="topnav">
     <form name="WelcomePage" action="${pageContext.request.contextPath}/welcome/WelcomePageFrame" method="post"> 
   <a class="active" href="javascript:document.WelcomePage.submit()">Home</a>
@@ -68,18 +90,24 @@ body {margin:0;}
    <br>
 <br>
 <br>
- <iframe scrolling="no" width="45%" src="http://localhost:8080/BankingDetails/balanceSnipnet"></iframe>
-<iframe scrolling="no" width="45%" src="http://localhost:8080/BankingDetails/balance"></iframe>
+<iframe name="balanceSnipnetFrame" scrolling="no" width="45%" src="${pageContext.request.contextPath}/balanceSnipnet"> </iframe>
+<iframe name="rewardsSnippetFrame" scrolling="no" width="45%" src="${pageContext.request.contextPath}/rewardsSnippet"></iframe>
 <br>
 <br>
 <br>
 <hr>
 <br>
 <br>
-<iframe scrolling="no" width="45%" src="http://localhost:8080/BankingDetails/balanceSnipnet"></iframe>
+<iframe name="profileSnippetFrame" scrolling="no" width="45%" src="http://localhost:8080/BankingDetails/profileSnippet"></iframe>
 <iframe scrolling="no" width="45%" src="http://localhost:8080/BankingDetails/balance"></iframe>  
 <br>
 <br>
 </div>
     </body>
+     <div>
+             <footer>
+                 <hr>
+ <center>Powered By &copy;FoxyCorp</center>
+  </footer>        
+     </div>
 </html>

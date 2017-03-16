@@ -8,7 +8,6 @@ package foxycorpbankingdetails.bankingdetails.Controller;
 import foxycorpbankingdetails.bankingdetails.DatabaseConnection.DatabaseConnection;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 /**
@@ -19,23 +18,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/balanceSnipnet")
 public class BalanceSnipnetController {
     
-       @RequestMapping(method = RequestMethod.GET)
-    public String RegisterControlPagePathGet(Model model)
+    @RequestMapping(method = RequestMethod.GET)
+    public String BalanceSnippetControlPagePathGet(HttpServletRequest request)
     {
+        request.setAttribute("Balance","");
+        request.setAttribute("ID","");  
         return "BalanceSnipnet";
     }
     
      @RequestMapping(method = RequestMethod.POST)
-    public String RegisterControlPagePathPost(HttpServletRequest request)
+    public String BalanceSnippetControlPagePathPost(HttpServletRequest request)
     { 
-//    String UsernameForBalance=null,RetrievedBalance=null;
-//    UsernameForBalance = WelcomeController.Username;
-//    System.out.println("userbalance is:"+RetrievedBalance);
-//    DatabaseConnection databaseconnection = new DatabaseConnection();
-//    RetrievedBalance=databaseconnection.RetrieveBalance(UsernameForBalance);
-//    System.out.println("retrieved is:"+RetrievedBalance);
-     request.setAttribute("Balance",5000);
-    
+        
+    String UsernameForBalance=null,RetrievedBalance=null,Retrievedid=null;
+    UsernameForBalance = WelcomeController.Username;
+    DatabaseConnection databaseconnection = new DatabaseConnection();
+    RetrievedBalance=databaseconnection.RetrieveBalance(UsernameForBalance);
+    Retrievedid=databaseconnection.RetrievedId;
+    System.out.println(RetrievedBalance+Retrievedid);
+    request.setAttribute("Balance",RetrievedBalance);
+    request.setAttribute("ID",Retrievedid);
+      
     return "BalanceSnipnet"; 
     }
 }

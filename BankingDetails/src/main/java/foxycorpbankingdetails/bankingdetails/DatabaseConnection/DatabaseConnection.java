@@ -18,9 +18,9 @@ import java.util.logging.Logger;
  */
 public class DatabaseConnection {
     
-    static boolean LoginCheckBoolean = true, PasswordCheckBoolean= true, databaseCheck=true;
-    static int RegistrationDetailsInsertionCheck,PasswordChangeUpdateCheck,BalanceDetailsInsertionCheck;
-    static String RetrievedBalance=null;
+    public static boolean LoginCheckBoolean = true, PasswordCheckBoolean= true, databaseCheck=true;
+    public static int RegistrationDetailsInsertionCheck,PasswordChangeUpdateCheck,BalanceDetailsInsertionCheck;
+    public static String RetrievedBalance=null,RetrievedId=null,RetrievedRewards=null;
     static Connection connection=null;
     static Connection connectionDBCreate=null;
     static PreparedStatement preparedStatement =null;
@@ -36,7 +36,7 @@ public class DatabaseConnection {
     public static final String BALANCE_AND_REWARDS_INSERTION = "insert into userbalance (username,balance,rewards) values(?,5000,30)";         
     public static final String PASSWORD_CHANGE_CHECK="select exists(select username,hint from usercredentials where username=? and hint=?)";
     public static final String PASSWORD_CHANGE_UPDATE="UPDATE usercredentials SET password = ? WHERE username = ? and hint = ?";
-    public static final String RETRIEVE_BALANCE="select balance from userbalance where username=?";
+    public static final String RETRIEVE_BALANCE="select balance,id,rewards from userbalance where username=?";
     
     public void getConnectionBeforeDBCreation()
     {
@@ -279,6 +279,8 @@ public class DatabaseConnection {
            while(resultSet.next())
            {
            RetrievedBalance = resultSet.getString(1);
+           RetrievedId = resultSet.getString(2);
+           RetrievedRewards=resultSet.getString(3);
            }
             resultSet.close();
             preparedStatement.close();

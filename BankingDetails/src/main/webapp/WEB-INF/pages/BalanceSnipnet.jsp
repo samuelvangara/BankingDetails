@@ -9,14 +9,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Balance Snipnet</title>
+        <title>Balance Snippet</title>
          <%
-            String Balance = request.getAttribute("Balance").toString();   
+            String Balance = "";
+            String ID="";
+                 Balance=request.getAttribute("Balance").toString();
+                 ID=request.getAttribute("ID").toString();
         %>
     </head>
-    <body>
+    <body style="background-color:gainsboro"> 
         <h3>
-            You Current Balance is :<%out.println(Balance);%> 
+            Account Number : <%out.println(ID);%>
         </h3>
-    </body>
-</html>
+        <h3>
+            <center>Your Current Credit is : $<%out.println(Balance);%></center>   
+        </h3>
+        <marquee behavior="scroll" direction="left">Click on the balance tab to know more...</marquee>
+     </body>
+   </html>

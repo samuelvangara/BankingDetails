@@ -43,4 +43,10 @@
       <p><center>Powered By <a href="https://www.google.com/">FOXYCORP!</a></center></p>
 </footer>
     </body>
+    <div>
+             <footer>
+                 <hr>
+ <center>Powered By &copy;FoxyCorp</center>
+  </footer>        
+     </div>
 </html>
