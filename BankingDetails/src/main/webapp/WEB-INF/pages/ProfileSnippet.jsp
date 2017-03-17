@@ -10,8 +10,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Profile Snippet</title>
+          <%
+            String EmailID = "";
+            String PhoneNumber = "";
+                 EmailID=request.getAttribute("EmailID").toString();
+                 PhoneNumber=request.getAttribute("PhoneNumber").toString();
+        %>
     </head>
-    <body>
-        <h1>Hello World!</h1>
+    <body style="background-color:gainsboro">
+         <h4>
+            Your Current Email ID : <%out.println(EmailID);%>**************
+        </h4>
+        <h4>
+            Your Current Phone Number : xxx-xxxx-<%out.println(PhoneNumber);%>
+        </h4>
+        <marquee behavior="scroll" direction="left">Always keep your profile updated, for any changes please visit the profile page and edit your information...</marquee>
     </body>
 </html>

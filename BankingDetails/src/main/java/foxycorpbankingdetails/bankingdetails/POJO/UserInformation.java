@@ -18,24 +18,19 @@ public class UserInformation {
     private String emailid;
     private String username;
     private transient String password;
-    private int phonenumber;
+    private long phonenumber;
     private String hint;
 
     @Override
-    public String toString() {
-        return "UserInformation{" + "firstname=" + firstname + ", lastname=" + lastname + ", emailid=" + emailid + ", username=" + username + ", password=" + password + ", phonenumber=" + phonenumber + ", hint=" + hint + '}';
-    }
-   
-    @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + Objects.hashCode(this.firstname);
-        hash = 17 * hash + Objects.hashCode(this.lastname);
-        hash = 17 * hash + Objects.hashCode(this.emailid);
-        hash = 17 * hash + Objects.hashCode(this.username);
-        hash = 17 * hash + Objects.hashCode(this.password);
-        hash = 17 * hash + this.phonenumber;
-        hash = 17 * hash + Objects.hashCode(this.hint);
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.firstname);
+        hash = 83 * hash + Objects.hashCode(this.lastname);
+        hash = 83 * hash + Objects.hashCode(this.emailid);
+        hash = 83 * hash + Objects.hashCode(this.username);
+        hash = 83 * hash + Objects.hashCode(this.password);
+        hash = 83 * hash + (int) (this.phonenumber ^ (this.phonenumber >>> 32));
+        hash = 83 * hash + Objects.hashCode(this.hint);
         return hash;
     }
 
@@ -74,7 +69,14 @@ public class UserInformation {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "UserInformation{" + "firstname=" + firstname + ", lastname=" + lastname + ", emailid=" + emailid + ", username=" + username + ", password=" + password + ", phonenumber=" + phonenumber + ", hint=" + hint + '}';
+    }
     
+    
+
     public String getFirstname() {
         return firstname;
     }
@@ -115,11 +117,11 @@ public class UserInformation {
         this.password = password;
     }
 
-    public int getPhonenumber() {
+    public long getPhonenumber() {
         return phonenumber;
     }
 
-    public void setPhonenumber(int phonenumber) {
+    public void setPhonenumber(long phonenumber) {
         this.phonenumber = phonenumber;
     }
 
@@ -130,7 +132,6 @@ public class UserInformation {
     public void setHint(String hint) {
         this.hint = hint;
     }
-    
-    
+
     
 }
