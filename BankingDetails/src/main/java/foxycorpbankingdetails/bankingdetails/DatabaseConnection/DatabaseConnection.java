@@ -5,13 +5,13 @@
  */
 package foxycorpbankingdetails.bankingdetails.DatabaseConnection;
 
+import foxycorpbankingdetails.bankingdetails.POJO.UserInformation;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 /**
  *
  * @author Foxy
@@ -20,7 +20,8 @@ public class DatabaseConnection {
     
     public static boolean LoginCheckBoolean = true, PasswordCheckBoolean= true, databaseCheck=true;
     public static int RegistrationDetailsInsertionCheck,PasswordChangeUpdateCheck,BalanceDetailsInsertionCheck;
-    public static String RetrievedBalance=null,RetrievedId=null,RetrievedRewards=null;
+    public static long RetrievedPhoneNumber;
+    public static String RetrievedBalance=null,RetrievedId=null,RetrievedRewards=null,RetrievedFirstName=null,RetrievedLastName=null,RetrievedEmailID=null;
     static Connection connection=null;
     static Connection connectionDBCreate=null;
     static PreparedStatement preparedStatement =null;
@@ -37,6 +38,7 @@ public class DatabaseConnection {
     public static final String PASSWORD_CHANGE_CHECK="select exists(select username,hint from usercredentials where username=? and hint=?)";
     public static final String PASSWORD_CHANGE_UPDATE="UPDATE usercredentials SET password = ? WHERE username = ? and hint = ?";
     public static final String RETRIEVE_BALANCE="select balance,id,rewards from userbalance where username=?";
+    public static final String RETRIEVE_USERINFORMATION="select * from usercredentials where username=?";
     
     public void getConnectionBeforeDBCreation()
     {
@@ -289,6 +291,38 @@ public class DatabaseConnection {
             System.out.println("SQL Exception in the RetrieveBalance method"+ex);
         }
            return RetrievedBalance;
+       }
+       
+       public ArrayList<UserInformation> RegisterationDetailsRetrevial(String Username)
+       {
+         ArrayList<UserInformation> UserInformation = new ArrayList<UserInformation>();
+         UserInformation ufo = new UserInformation();
+         getConnectionAfterDBCreation();
+        try {
+            preparedStatement = connection.prepareStatement(RETRIEVE_USERINFORMATION);
+            preparedStatement.setString(1, Username);
+           resultSet=preparedStatement.executeQuery();
+           while(resultSet.next())
+           {
+           RetrievedFirstName=resultSet.getString(2);
+           RetrievedLastName= resultSet.getString(3);
+           RetrievedEmailID= resultSet.getString(4);
+           RetrievedPhoneNumber= resultSet.getLong(7);
+           System.out.println(RetrievedPhoneNumber);
+           ufo.setFirstname(RetrievedFirstName);
+           ufo.setLastname(RetrievedLastName);
+           ufo.setEmailid(RetrievedEmailID);
+           ufo.setPhonenumber(RetrievedPhoneNumber);
+           }
+            UserInformation.add(ufo);
+            resultSet.close();
+            preparedStatement.close();
+            closeConnection();
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception in the RegisterationDetailsRetrevial method"+ex);
+        }
+           
+         return UserInformation;
        }
     
 }
