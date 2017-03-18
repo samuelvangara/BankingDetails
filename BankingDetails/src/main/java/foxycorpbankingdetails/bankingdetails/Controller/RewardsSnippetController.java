@@ -22,8 +22,13 @@ public class RewardsSnippetController {
     @RequestMapping(method = RequestMethod.GET)
     public String RewardsSnippetControlPagePathGet(HttpServletRequest request)
     {
-        request.setAttribute("Rewards","30");
-        return "RewardsSnippet";
+    String UsernameForBalance=null,RetrievedRewards=null,Retrievedid=null;
+    UsernameForBalance = WelcomeController.Username;
+    DatabaseConnection databaseconnection = new DatabaseConnection();
+    RetrievedRewards=databaseconnection.RetrievedRewards;
+    request.setAttribute("Rewards",RetrievedRewards);
+    
+    return "RewardsSnippet"; 
     }
     
     @RequestMapping(method = RequestMethod.POST)

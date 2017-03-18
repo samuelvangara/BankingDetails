@@ -21,12 +21,19 @@ public class BalanceSnipnetController {
     @RequestMapping(method = RequestMethod.GET)
     public String BalanceSnippetControlPagePathGet(HttpServletRequest request)
     {
-        request.setAttribute("Balance","");
-        request.setAttribute("ID","");  
-        return "BalanceSnipnet";
+    String UsernameForBalance=null,RetrievedBalance=null,Retrievedid=null;
+    UsernameForBalance = WelcomeController.Username;
+    DatabaseConnection databaseconnection = new DatabaseConnection();
+    RetrievedBalance=databaseconnection.RetrieveBalance(UsernameForBalance);
+    Retrievedid=databaseconnection.RetrievedId;
+    System.out.println(RetrievedBalance+Retrievedid);
+    request.setAttribute("Balance",RetrievedBalance);
+    request.setAttribute("ID",Retrievedid);
+      
+    return "BalanceSnipnet"; 
     }
     
-     @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String BalanceSnippetControlPagePathPost(HttpServletRequest request)
     { 
         
