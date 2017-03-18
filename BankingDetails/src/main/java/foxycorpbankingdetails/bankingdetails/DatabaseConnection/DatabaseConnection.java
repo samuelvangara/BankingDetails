@@ -283,6 +283,10 @@ public class DatabaseConnection {
            RetrievedBalance = resultSet.getString(1);
            RetrievedId = resultSet.getString(2);
            RetrievedRewards=resultSet.getString(3);
+           System.out.println(RetrievedBalance);
+           System.out.println(RetrievedId);
+           System.out.println(RetrievedRewards);
+           
            }
             resultSet.close();
             preparedStatement.close();
@@ -295,7 +299,7 @@ public class DatabaseConnection {
        
        public ArrayList<UserInformation> RegisterationDetailsRetrevial(String Username)
        {
-         ArrayList<UserInformation> UserInformation = new ArrayList<UserInformation>();
+         ArrayList<UserInformation> UserInformation = new ArrayList<>();
          UserInformation ufo = new UserInformation();
          getConnectionAfterDBCreation();
         try {
@@ -308,6 +312,9 @@ public class DatabaseConnection {
            RetrievedLastName= resultSet.getString(3);
            RetrievedEmailID= resultSet.getString(4);
            RetrievedPhoneNumber= resultSet.getLong(7);
+           System.out.println(RetrievedFirstName);
+           System.out.println(RetrievedLastName);
+           System.out.println(RetrievedEmailID);
            System.out.println(RetrievedPhoneNumber);
            ufo.setFirstname(RetrievedFirstName);
            ufo.setLastname(RetrievedLastName);

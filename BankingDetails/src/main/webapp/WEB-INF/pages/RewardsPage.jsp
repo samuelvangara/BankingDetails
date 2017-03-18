@@ -43,6 +43,25 @@ body {margin:0;}
     background-color: #4CAF50;
     color: white;
 }
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #333;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #ddd;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 15%;
+    border: solid #333;
+    }
 </style>
          </head>
     <body style="background-color:whitesmoke">
@@ -63,6 +82,9 @@ body {margin:0;}
   <form name="logoutPage" action="${pageContext.request.contextPath}/logout" method="post"> 
   <a href="javascript:document.logoutPage.submit()">Logout</a>
   </form>
+    <form>
+  <input align="right" type="text" name="search" placeholder="Search...">
+</form>
 </div>
 <hr>
 <div style="padding-left:16px">
