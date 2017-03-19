@@ -44,7 +44,7 @@ public class WelcomeController {
         {
             ModelAndView modelView = new ModelAndView("WelcomePageFrame");
             request.setAttribute("Username", Username);
-            request.setAttribute("Password", Password);
+            request.setAttribute("Password", "1");
             return modelView;
         }
         if(Username.length()==0 || Password.length()==0)
@@ -66,7 +66,7 @@ public class WelcomeController {
         {
             ModelAndView modelView = new ModelAndView("WelcomePageFrame");
             request.setAttribute("Username", Username);
-            request.setAttribute("Password", Password);
+            request.setAttribute("Password", "1");
             return modelView;
         
         }

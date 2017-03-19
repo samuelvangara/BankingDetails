@@ -151,31 +151,31 @@ span.psw {
                  </tr>
                  <tr>
                      <td> First Name </td>
-                     <td><input type="text" title="Enter First Name" name="firstname"/></td>
+                     <td><input type="text" title="Enter First Name" name="firstname" required/></td>
                  </tr>
                   <tr>
                      <td> Last Name </td>
-                     <td><input type="text" title="Enter Last Name" name="lastname"/></td>
+                     <td><input type="text" title="Enter Last Name" name="lastname" required/></td>
                  </tr>
                   <tr>
                      <td> Email ID </td>
-                     <td><input type="email" title="Enter Email ID" name="emailid"/></td>
+                     <td><input type="email" title="Enter Email ID" name="emailid" required/></td>
                  </tr>
                   <tr>
                      <td> User Name </td>
-                     <td><input type="text" title="Enter User name" name="username"/></td>
+                     <td><input type="text" title="Enter User name" name="username" required/></td>
                  </tr>
                  <tr>
                      <td>Password</td>
-                     <td><input type="password"title="Enter Password" name="password"/></td>
+                     <td><input type="password"title="Enter Password" name="password" required/></td>
                  </tr>
                   <tr>
                      <td> Phone Number </td>
-                     <td><input type="number" minlength="10" maxlength="10" title="Enter Phone Number" value ="0" name="phonenumber"/></td>
+                     <td><input type="number" minlength="10" maxlength="10" title="Enter Phone Number" value ="0" name="phonenumber" required/></td>
                  </tr>
                   <tr>
                      <td> Mother's Maiden Name </td>
-                     <td><input type="text" title="Enter Mother's Maiden Name" name="hint"/></td>
+                     <td><input type="text" title="Enter Mother's Maiden Name" name="hint" required/></td>
                  </tr>
                  <tr>
                      <td align="center" colspan="2">

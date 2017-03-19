@@ -21,7 +21,7 @@ public class DatabaseConnection {
     public static boolean LoginCheckBoolean = true, PasswordCheckBoolean= true, databaseCheck=true;
     public static int RegistrationDetailsInsertionCheck,PasswordChangeUpdateCheck,BalanceDetailsInsertionCheck;
     public static long RetrievedPhoneNumber;
-    public static String RetrievedBalance=null,RetrievedId=null,RetrievedRewards=null,RetrievedFirstName=null,RetrievedLastName=null,RetrievedEmailID=null;
+    public static String RetrievedBalance=null,RetrievedId=null,RetrievedRewards=null,RetrievedFirstName=null,RetrievedLastName=null,RetrievedEmailID=null,RetrievedUsername=null;
     static Connection connection=null;
     static Connection connectionDBCreate=null;
     static PreparedStatement preparedStatement =null;
@@ -29,7 +29,7 @@ public class DatabaseConnection {
     public static final String CHECK_DATABASE = "select exists(SELECT * from pg_database WHERE datname='bankingdetails')"; 
     public static final String CREATE_DATABASE = "create database bankingdetails"; 
     public static final String CREATE_SEQUENCE="CREATE SEQUENCE IF NOT EXISTS UserCredSequence CYCLE INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 20";
-    public static final String CREATE_TABLE="CREATE TABLE IF NOT EXISTS usercredentials (id integer NOT NULL DEFAULT nextval('UserCredSequence'),firstname name NOT NULL,lastname name NOT NULL,emailid character varying(20) NOT NULL,username name NOT NULL,password character varying(15) NOT NULL,phonenumber numeric(10) NOT NULL,hint character varying(30) NOT NULL)";
+    public static final String CREATE_TABLE="CREATE TABLE IF NOT EXISTS usercredentials (id integer NOT NULL DEFAULT nextval('UserCredSequence'),firstname name NOT NULL,lastname name NOT NULL,emailid character varying(40) NOT NULL,username name NOT NULL,password character varying(15) NOT NULL,phonenumber numeric(10) NOT NULL,hint character varying(30) NOT NULL)";
     public static final String CREATE_SEQUENCE_BALANCE="CREATE SEQUENCE IF NOT EXISTS UserCredBalance CYCLE INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 20";
     public static final String CREATE_TABLE_BALANCE="CREATE TABLE IF NOT EXISTS userbalance (id integer NOT NULL DEFAULT nextval('UserCredBalance'),username name NOT NULL,balance numeric(10) NOT NULL,rewards numeric(10) NOT NULL)";
     public static final String LOGIN_CHECK = "select exists(select username,password from usercredentials where username=? and password=?)";
@@ -45,7 +45,7 @@ public class DatabaseConnection {
         try {
             Class.forName("org.postgresql.Driver");
             try {
-                connectionDBCreate = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/", "postgres","Nitinz!424");
+                connectionDBCreate = DriverManager.getConnection("jdbc:postgresql://10.0.0.188:5432/", "postgres","Nitinz!424");
             } catch (SQLException ex) {
                System.out.println("SQL Exception in the getConnectionBeforeDBCreation method"+ex);
             }
@@ -62,7 +62,7 @@ public class DatabaseConnection {
         try {
             Class.forName("org.postgresql.Driver");
             try {
-                connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/bankingdetails", "postgres","Nitinz!424");
+                connection = DriverManager.getConnection("jdbc:postgresql://10.0.0.188:5432/bankingdetails", "postgres","Nitinz!424");
             } catch (SQLException ex) {
                System.out.println("SQL Exception in the getConnectionAfterDBCreation method"+ex);
             }
@@ -309,9 +309,10 @@ public class DatabaseConnection {
            while(resultSet.next())
            {
            RetrievedFirstName=resultSet.getString(2);
-           RetrievedLastName= resultSet.getString(3);
-           RetrievedEmailID= resultSet.getString(4);
-           RetrievedPhoneNumber= resultSet.getLong(7);
+           RetrievedLastName=resultSet.getString(3);
+           RetrievedEmailID=resultSet.getString(4);
+           RetrievedUsername=resultSet.getString(5);
+           RetrievedPhoneNumber=resultSet.getLong(7);
            System.out.println(RetrievedFirstName);
            System.out.println(RetrievedLastName);
            System.out.println(RetrievedEmailID);
@@ -319,6 +320,7 @@ public class DatabaseConnection {
            ufo.setFirstname(RetrievedFirstName);
            ufo.setLastname(RetrievedLastName);
            ufo.setEmailid(RetrievedEmailID);
+           ufo.setUsername(RetrievedUsername);
            ufo.setPhonenumber(RetrievedPhoneNumber);
            }
             UserInformation.add(ufo);
