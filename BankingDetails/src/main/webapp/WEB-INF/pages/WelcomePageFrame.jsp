@@ -10,9 +10,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
         <%
-            String UserName = request.getAttribute("Username").toString();
-            String Password = request.getAttribute("Password").toString();       
-        %>
+            String UserName = request.getAttribute("Username").toString();   
+            String Password = request.getAttribute("Password").toString();  
+             %>
         <h3 align="left">Hello!<%out.print(UserName);%></h3>
     <hr>
      <style>
@@ -180,7 +180,7 @@ img.avatar {
     padding: 16px;
 }
 
-span.psw {
+span.emailid {
     float: outside;
     padding-top: 16px;
 }
@@ -227,7 +227,8 @@ span.psw {
 /* Add Zoom Animation */
 .animate {
     -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
+    animation: animatezoom 0.6s;
+     box-sizing: border-box;
 }
 
 @-webkit-keyframes animatezoom {
@@ -242,7 +243,11 @@ span.psw {
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
-    span.psw {
+    span.emailid {
+       display: block;
+       float: none;
+    }
+     span.username {
        display: block;
        float: none;
     }
@@ -250,11 +255,35 @@ span.psw {
        width: 100%;
     }
 }
+
+/* The Modal (background) */
+.modal1 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal1-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
 </style>
 <script type="text/javascript">
     window.onload=function(){
+         modal1.style.display = "block";
       var auto = setTimeout(function(){ autoRefresh(); }, 0.1);
-
         function submitform(){
            document.forms["balanceSnipnetForm"].submit();
            document.forms["rewardsSnippetForm"].submit();
@@ -277,19 +306,30 @@ span.psw {
 </form>
  <!--starts here-->
   <div name ="id01" id="id01" class="modal">
-   <form class="modal-content animate" action="/action_page.php">
+   <form class="modal-content animate" action="${pageContext.request.contextPath}/linkAnAccount" method="post">
     <div class="container">
+      <center><h4 style="color: #ffffff">Enter Data to verify Account</h4></center>
         <center><label style="color: #ffffff"><b>Username</b></label></center>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <input type="text" placeholder="Enter Username" name="username" required>
 <br>
    <center><label style="color: #ffffff"><b>Email Id</b></label></center>
-      <input type="password" placeholder="Enter Email Id" name="psw" required>
-        
+      <input type="text" placeholder="Enter Email Id" name="emailid" required> 
       <center><button type="submit" class="loginbtn">Add</button>
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button></center>
   </div>
  </form>
 </div>
+    
+    <div id="myModal" class="modal1">
+
+  <!-- Modal content -->
+  <div class="modal1-content">
+    <span class="close">&times;</span>
+    <h3><center> ${FailureRegistrationMessage}</center></h3>
+  </div>
+
+</div>
+    
 <script>
 // Get the modal
 var modal = document.getElementById('id01');
@@ -300,6 +340,26 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 };
+// Get the modal
+var modal1 = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal1.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target === modal1) {
+        modal1.style.display = "none";
+    }
+}
 </script>
 <!--ends here-->
 <div class="topnav">
@@ -347,6 +407,8 @@ window.onclick = function(event) {
    </div>
 </div>
 <hr>
+<h3><center> ${DetailsNotEnteredRegistrationMessage}</center></h3>
+<h3><center> ${FailureRegistrationMessage}</center></h3>
 <div style="padding-left:25px">
    <br>
 <br>

@@ -10,6 +10,7 @@
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Balance</title>
+        <link rel="shortcut icon" href="http://nasuke.net/wp-content/uploads/favorite.ico" />
         <%
             String UserName = request.getAttribute("Username").toString();
             String Password = request.getAttribute("Password").toString();       

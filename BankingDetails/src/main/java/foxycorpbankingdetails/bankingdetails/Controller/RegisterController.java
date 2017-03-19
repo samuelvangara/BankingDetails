@@ -38,7 +38,13 @@ public class RegisterController {
         Emailid = request.getParameter("emailid");
         Username = request.getParameter("username");
         Password = request.getParameter("password");
-        Phonenumber = Long.parseLong(request.getParameter("phonenumber"));
+        if((request.getParameter("phonenumber")).equals(""))
+                {
+               Phonenumber=0;     
+                }else
+        {
+            Phonenumber = Long.parseLong(request.getParameter("phonenumber"));
+        }        
         Hint = request.getParameter("hint");
         if(Firstname==null || Lastname==null || Emailid==null || Username==null || Password==null || Hint==null || Phonenumber==0)
         {
