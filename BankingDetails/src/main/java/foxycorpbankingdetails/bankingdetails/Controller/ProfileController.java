@@ -7,9 +7,9 @@ package foxycorpbankingdetails.bankingdetails.Controller;
 
 import static foxycorpbankingdetails.bankingdetails.Controller.WelcomeController.Password;
 import static foxycorpbankingdetails.bankingdetails.Controller.WelcomeController.Username;
+import foxycorpbankingdetails.bankingdetails.DatabaseConnection.DatabaseConnection;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,6 +33,9 @@ public class ProfileController {
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView ProfileControlPagePathPost(HttpServletRequest request)
     {  
+        DatabaseConnection databaseconnection = new DatabaseConnection();
+        
+        
         if(Username!=null && Password!=null)
         {
             ModelAndView modelView = new ModelAndView("ProfilePage");

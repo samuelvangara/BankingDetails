@@ -136,8 +136,13 @@
           <hr>
     </head>
     <body background="http://www.africalegalnetwork.com/kenya/wp-content/uploads/sites/22/2016/07/Banking.jpg">
-        <div>
-      
+        
+ <script type="text/javascript">
+window.onloadlogin=function(){
+    window.history.forward();
+window.window.console.log("hi");
+};
+     </script>    
         <h3> <center>${FailureLoginMessage}</center></h3>
         <h3> <center>${SuccessRegistrationMessage}</center></h3>
          <form action="${pageContext.request.contextPath}/welcome" method="post">

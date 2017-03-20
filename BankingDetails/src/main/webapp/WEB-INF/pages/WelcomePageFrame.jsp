@@ -282,7 +282,7 @@ span.emailid {
 </style>
 <script type="text/javascript">
     window.onload=function(){
-         modal1.style.display = "block";
+//         modal1.style.display = "block";
       var auto = setTimeout(function(){ autoRefresh(); }, 0.1);
         function submitform(){
            document.forms["balanceSnipnetForm"].submit();

@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Foxy
@@ -45,7 +47,7 @@ public class DatabaseConnection {
         try {
             Class.forName("org.postgresql.Driver");
             try {
-                connectionDBCreate = DriverManager.getConnection("jdbc:postgresql://10.0.0.188:5432/", "postgres","Nitinz!424");
+                connectionDBCreate = DriverManager.getConnection("jdbc:postgresql://2601:5cc:c901:f4f9:b5ff:a6af:83e6:8fb0:5432/", "postgres","Nitinz!424");
             } catch (SQLException ex) {
                System.out.println("SQL Exception in the getConnectionBeforeDBCreation method"+ex);
             }
@@ -62,7 +64,7 @@ public class DatabaseConnection {
         try {
             Class.forName("org.postgresql.Driver");
             try {
-                connection = DriverManager.getConnection("jdbc:postgresql://10.0.0.188:5432/bankingdetails", "postgres","Nitinz!424");
+                connection = DriverManager.getConnection("jdbc:postgresql://2601:5cc:c901:f4f9:b5ff:a6af:83e6:8fb0:5432/bankingdetails", "postgres","Nitinz!424");
             } catch (SQLException ex) {
                System.out.println("SQL Exception in the getConnectionAfterDBCreation method"+ex);
             }
@@ -313,10 +315,6 @@ public class DatabaseConnection {
            RetrievedEmailID=resultSet.getString(4);
            RetrievedUsername=resultSet.getString(5);
            RetrievedPhoneNumber=resultSet.getLong(7);
-           System.out.println(RetrievedFirstName);
-           System.out.println(RetrievedLastName);
-           System.out.println(RetrievedEmailID);
-           System.out.println(RetrievedPhoneNumber);
            ufo.setFirstname(RetrievedFirstName);
            ufo.setLastname(RetrievedLastName);
            ufo.setEmailid(RetrievedEmailID);
@@ -332,6 +330,25 @@ public class DatabaseConnection {
         }
            
          return UserInformation;
+       }
+       
+       public ArrayList<UserInformation> ViewProfile(String Username)
+       {
+           
+           ArrayList<UserInformation> RetrievedUserInformation = new ArrayList<>();
+           getConnectionAfterDBCreation();
+        try {
+            preparedStatement = connection.prepareStatement(RETRIEVE_USERINFORMATION);
+            preparedStatement.setString(1, Username);
+           resultSet=preparedStatement.executeQuery();
+           while(resultSet.next()){
+               
+           }
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+           return RetrievedUserInformation;
        }
     
 }
