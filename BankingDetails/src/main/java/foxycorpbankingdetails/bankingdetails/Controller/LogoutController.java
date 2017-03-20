@@ -5,16 +5,17 @@
  */
 package foxycorpbankingdetails.bankingdetails.Controller;
 
+import foxycorpbankingdetails.bankingdetails.DatabaseConnection.DatabaseConnection;
 import java.io.IOException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -25,15 +26,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LogoutController{
     
     @RequestMapping(method = RequestMethod.GET)
-    public String LogoutControlPagePathGet(Model model)
+    public ModelAndView LogoutControlPagePathGet(HttpServletRequest
+request, HttpServletResponse response) throws IOException,
+ServletException
     {
-        return "loginPage";
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return new ModelAndView("redirect:http://localhost:8080/BankingDetails/");
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public String LogoutControlPagePathPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+     public ModelAndView LogoutControlPagePathPost(HttpServletRequest
+request, HttpServletResponse response) throws IOException,
+ServletException
     {
-        return "loginPage";
+        HttpSession session = request.getSession();
+        session.invalidate();
+        DatabaseConnection dbc = new DatabaseConnection();
+        dbc.closeConnection();
+        return new ModelAndView("redirect:http://localhost:8080/BankingDetails/");
+       
     }
     
 }

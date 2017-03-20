@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Foxy
@@ -328,6 +330,25 @@ public class DatabaseConnection {
         }
            
          return UserInformation;
+       }
+       
+       public ArrayList<UserInformation> ViewProfile(String Username)
+       {
+           
+           ArrayList<UserInformation> RetrievedUserInformation = new ArrayList<>();
+           getConnectionAfterDBCreation();
+        try {
+            preparedStatement = connection.prepareStatement(RETRIEVE_USERINFORMATION);
+            preparedStatement.setString(1, Username);
+           resultSet=preparedStatement.executeQuery();
+           while(resultSet.next()){
+               
+           }
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+           return RetrievedUserInformation;
        }
     
 }

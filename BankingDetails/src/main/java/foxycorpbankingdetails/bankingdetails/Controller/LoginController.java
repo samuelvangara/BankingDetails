@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
     
     @RequestMapping(method = RequestMethod.GET)
-    public String LoginControlPagePath(Model model)
+    public String LoginControlPagePathGet(Model model)
     {   
         DatabaseConnection databaseconnection= new DatabaseConnection();
         boolean databaseCheck = databaseconnection.checkDatabase();
@@ -32,5 +32,4 @@ public class LoginController {
         databaseconnection.createTable();
         return "loginPage";
     }
-    
-}
+  }
