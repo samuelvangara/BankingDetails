@@ -313,10 +313,6 @@ public class DatabaseConnection {
            RetrievedEmailID=resultSet.getString(4);
            RetrievedUsername=resultSet.getString(5);
            RetrievedPhoneNumber=resultSet.getLong(7);
-           System.out.println(RetrievedFirstName);
-           System.out.println(RetrievedLastName);
-           System.out.println(RetrievedEmailID);
-           System.out.println(RetrievedPhoneNumber);
            ufo.setFirstname(RetrievedFirstName);
            ufo.setLastname(RetrievedLastName);
            ufo.setEmailid(RetrievedEmailID);

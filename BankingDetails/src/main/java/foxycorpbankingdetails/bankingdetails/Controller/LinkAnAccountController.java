@@ -46,7 +46,7 @@ public class LinkAnAccountController {
             ModelAndView modelView = new ModelAndView("WelcomePageFrame");
             modelView.addObject("DetailsNotEnteredRegistrationMessage","Account has been linked successfully!");
             request.setAttribute("Username",Username);
-            request.setAttribute("Emailid",Username);
+            request.setAttribute("Password","1");
             return modelView;
         
         }
