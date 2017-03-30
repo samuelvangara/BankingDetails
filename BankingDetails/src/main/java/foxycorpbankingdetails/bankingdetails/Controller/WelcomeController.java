@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.apache.log4j.*;
 /**
  *
  * @author Foxy
@@ -33,6 +33,7 @@ public class WelcomeController {
       @RequestMapping(method = RequestMethod.POST)
     public ModelAndView WelcomeControlPagePathPost(HttpServletRequest request)
     {   
+        final Logger logger = Logger.getLogger(Username);
         String RetrievedBalance=null;
         DatabaseConnection databaseconnection = new DatabaseConnection();
         Username = request.getParameter("username");
@@ -50,9 +51,11 @@ public class WelcomeController {
         if(Username.length()==0 || Password.length()==0)
         {
            ModelAndView modelView = new ModelAndView("loginPage");
+           logger.error("Username should be entered"+Username);
            modelView.addObject("FailureLoginMessage","Please enter your credentials to login.");
            return modelView; 
         }
+        logger.warn("Username entered is "+Username+" which does not exist in the database");
            ModelAndView modelView = new ModelAndView("loginPage");
            modelView.addObject("FailureLoginMessage","Please enter the correct username and password.If you are not a registered user, please register!");
            return modelView;
