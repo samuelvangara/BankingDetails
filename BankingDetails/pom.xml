@@ -6,7 +6,7 @@
     <artifactId>BankingDetails</artifactId>
     <version>FoxyCorpBankingDetails1.0</version>
     <packaging>war</packaging>
-
+    
     <name>BankingDetails</name>
 
     <properties>
@@ -16,6 +16,23 @@
     </properties>
 
     <dependencies>
+        <dependency>
+		<groupId>opensymphony</groupId>
+		<artifactId>quartz</artifactId>
+		<version>1.6.3</version>
+	</dependency>
+
+	<dependency>
+		<groupId>commons-collections</groupId>
+		<artifactId>commons-collections</artifactId>
+		<version>3.2.1</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.apache.directory.studio</groupId>
+		<artifactId>org.apache.commons.logging</artifactId>
+		<version>1.1.1</version>
+	</dependency>        
 <dependency>
     <groupId>junit</groupId>
     <artifactId>junit</artifactId>
@@ -80,14 +97,6 @@
         <version>${spring.version}</version>
         <scope>test</scope>
     </dependency>
- 
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.11</version>
-        <scope>test</scope>
-    </dependency>
- 
     <dependency>
         <groupId>org.apache.tiles</groupId>
         <artifactId>tiles-core</artifactId>
@@ -207,7 +216,20 @@
                 <version>2.9.2-01</version>
                 <extensions>true</extensions>
             </plugin>
-        </plugins>
+                <plugin>
+			<!-- Build an executable JAR -->
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<version>2.4</version>
+			<configuration>
+				<archive>
+					<manifest>
+						<mainClass>foxycorpbankingdetails.bankingdetails.Controller.LoginController</mainClass>
+					</manifest>
+				</archive>
+			</configuration>
+		</plugin>
+            </plugins>
     </build>
 
 </project>

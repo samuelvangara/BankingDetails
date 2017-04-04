@@ -47,7 +47,7 @@ public class DatabaseConnection {
         try {
             Class.forName("org.postgresql.Driver");
             try {
-                connectionDBCreate = DriverManager.getConnection("jdbc:postgresql://2601:5cc:c901:f4f9:b5ff:a6af:83e6:8fb0:5432/", "postgres","Nitinz!424");
+                connectionDBCreate = DriverManager.getConnection("jdbc:postgresql://bankingdetails.cstxafeej7el.us-east-1.rds.amazonaws.com:5432/", "postgres","Nitinz!424");
             } catch (SQLException ex) {
                System.out.println("SQL Exception in the getConnectionBeforeDBCreation method"+ex);
             }
@@ -64,7 +64,7 @@ public class DatabaseConnection {
         try {
             Class.forName("org.postgresql.Driver");
             try {
-                connection = DriverManager.getConnection("jdbc:postgresql://2601:5cc:c901:f4f9:b5ff:a6af:83e6:8fb0:5432/bankingdetails", "postgres","Nitinz!424");
+                connection = DriverManager.getConnection("jdbc:postgresql://bankingdetails.cstxafeej7el.us-east-1.rds.amazonaws.com:5432/bankingdetails", "postgres","Nitinz!424");
             } catch (SQLException ex) {
                System.out.println("SQL Exception in the getConnectionAfterDBCreation method"+ex);
             }
